@@ -1,0 +1,39 @@
+@import 'component';
+@import 'forms';
+
+.soliloquy-post-list {
+    grid-area: body;
+    display: flex;
+    flex-flow: column nowrap;
+
+    &__empty {
+        margin: 15vh 0 0;
+        color: $london;
+        text-align: center;
+    }
+
+    &__new-post-button {
+        @include button;
+        max-width: rem(500px);
+        height: rem(40px) !important;
+        margin: rem(20px) auto;
+        font-size: rem(20px) !important;
+    }
+
+
+    &__title {
+        @include title-line;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: rem(20px);
+        letter-spacing: rem(.5px);
+        margin: 0 0 rem(20px);
+        font-weight: 100;
+        color: $london;
+
+        &::after {
+
+        }
+    }
+}

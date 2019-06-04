@@ -1,0 +1,201 @@
+@import 'component';
+
+@mixin form() {
+    background: $cocoaBean;
+    padding: rem(20px);
+    margin: 0 rem(-20px);
+
+    &__input-wrapper {
+        position: relative;
+        margin-bottom: rem(20px);
+    }
+
+    &__label {
+        display: inline-block;
+        font-size: rem(10px);
+        color: $snuff;
+        letter-spacing: rem(.5px);
+        transform: translateY(#{rem(21px)}) scale(1.4);
+        transform-origin: left center;
+        transition:
+            transform .3s ease-in-out;
+
+        &--error {
+            color: #F00;
+            font-weight: 900;
+        }
+    }
+
+    &__input-wrapper--is-dirty &__label {
+        transform: translateY(0) scale(1);
+    }
+
+    @include when-wider-than(tablet) {
+        margin: 0;
+
+        &__label {
+            font-size: rem(12px);
+            transform: translateY(#{rem(24px)}) scale(1.5);
+        }
+    }
+}
+
+@mixin text-input() {
+    input {
+        background: none;
+        border: none;
+        border-bottom: rem(2px) solid $lavender;
+        width: 100%;
+        color: $ivory;
+        box-shadow: 0 rem(1px) black;
+        padding: rem(5px) rem(5px) rem(5px) 0;
+        font-size: rem(16px);
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+            border-color: $london;
+        }
+    }
+
+    @include when-wider-than(tablet) {
+        input {
+            font-size: rem(18px);
+        }
+    }
+}
+
+@mixin textarea() {
+    &__label--textarea {
+        transform: translate( #{rem(10px)}, #{rem(37px)}) scale(1.5);
+    }
+
+    &__input-wrapper {
+        overflow: hidden;
+    }
+
+    &__input-wrapper--is-dirty  &__label--textarea {
+        transform: translate(0, 0) scale(1);
+    }
+
+    textarea {
+        width: 100%;
+        height: rem(144px);
+        background: $tamarind;
+        padding: rem(10px);
+        margin-top: rem(7px);
+        color: $snuff;
+        font-size: rem(14px);
+        letter-spacing: rem(.5px);
+        border-color: $black $nearBlack $lavender;
+        border-width: rem(1px) rem(1px) rem(2px);
+        box-shadow: 0 rem(1px) $black;
+        resize: none;
+
+        &:focus {
+            outline: none;
+            border-color: $snuff;
+        }
+    }
+
+    @include when-wider-than(tablet) {
+        textarea {
+            font-size: rem(18px);
+            height: rem(220px);
+        }
+    }
+}
+
+@mixin select() {
+    &__label--select {
+        transform: none;
+    }
+
+    .soliloquy-svg-select-icon {
+        position: absolute;
+        right: rem(5px);
+        bottom: rem(9px);
+
+        path {
+            fill: $london;
+        }
+    }
+
+    select {
+        background: none;
+        border: none;
+        border-bottom: rem(2px) solid $lavender;
+        width: 100%;
+        color: $ivory;
+        box-shadow: 0 rem(1px) black;
+        padding: rem(5px) rem(5px) rem(5px) 0;
+        border-radius: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+            border-color: $london;
+        }
+    }
+
+    @include when-wider-than(tablet) {
+        select {
+            font-size: rem(18px);
+            padding: rem(8px) rem(5px) rem(8px) 0;
+        }
+
+        .soliloquy-svg-select-icon {
+            transform: scale(1.1);
+        }
+    }
+}
+
+@mixin button() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: rem(35px);
+    color: $snuff;
+    background: $lavender;
+    font-size: rem(14px);
+    padding: 0 rem(15px);
+    border: rem(2px) solid $lavender;
+    border-radius: rem(15px);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-shadow: 0 rem(1px) $cocoaBean;
+    box-shadow: 0 rem(1px) $black;
+    cursor: pointer;
+    transition:
+            color .3s ease-in-out,
+            transform .1s ease-in-out;
+
+    &:hover {
+        color: $white;
+        transform: scale(1.1);
+    }
+
+    &:active {
+        transform: scale(.98);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $snuff;
+        background: $lavender;
+    }
+
+    @include when-wider-than(tablet) {
+        font-size: rem(18px);
+        height: rem(42px);
+    }
+
+    @include when-wider-than(small_desktop) {
+        font-size: rem(14px);
+        height: rem(26px);
+    }
+}

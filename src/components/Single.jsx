@@ -5,6 +5,8 @@ import Post from './Post';
 import Replies from './Replies';
 import NewReply from './NewReply';
 
+import '../styles/Single.scss';
+
 // Single post display
 // with Replies and reply form
 

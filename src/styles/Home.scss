@@ -1,0 +1,162 @@
+@import 'component';
+@import 'forms';
+
+.soliloquy {
+    @include grid-mobile;
+    max-width: rem(1280px);
+    margin: 0 auto;
+    padding: rem(20px);
+    min-height: 100vh;
+    grid-template-areas:
+        "head head head head head head"
+        "body body body body body body"
+        "foot foot foot foot foot foot";
+
+    &__header {
+        grid-area: head;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        font-size: rem(12px);
+        color: $london;
+        letter-spacing: rem(.8px);
+        margin-bottom: rem(20px);
+    }
+
+    &__title {
+        @include title-line;
+        display: flex;
+        align-items: center;
+        font-family: $titleFont;
+        font-weight: 100;
+        font-size: rem(30px);
+        letter-spacing: 1px;
+        margin: rem(10px) 0 0;
+
+        a {
+            display: block;
+            color: $snuff;
+            text-decoration: none;
+        }
+    }
+
+    &__version {
+        font-size: rem(8px);
+        opacity: .5;
+        margin-left: rem(-10px);
+    }
+
+    &__subtitle {
+        line-height: 1.4;
+        margin: rem(4px) 0 0;
+    }
+
+    &__nav {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        border-top: rem(1px) solid $eggplant;
+        border-bottom: rem(1px) solid $black;
+        margin-top: rem(20px);
+        font-weight: 100;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 0;
+            border-top: rem(1px) solid $black;
+        }
+
+        &::after {
+            top: auto;
+            bottom: 0;
+            border-top: rem(1px) solid $eggplant;
+        }
+
+        &-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1 1 auto;
+            text-transform: uppercase;
+            color: $london;
+            height: rem(40px);
+
+            &--active {
+                font-weight: 600;
+                color: $white;
+                background: $tamarind;
+            }
+        }
+
+        &-divider {
+            display: inline-block;
+            flex: 0 0 auto;
+            width: rem(20px);
+
+            &::before {
+                content: '|';
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-end;
+        padding-top: rem(30px);
+        grid-area: foot;
+    }
+
+    &__new-post-button,
+    &__home-button {
+        @include button;
+    }
+
+    @include when-wider-than(tablet) {
+        padding: rem(40px);
+
+        &__header {
+            font-size: rem(16px);
+            letter-spacing: rem(.8px);
+            margin-bottom: rem(20px);
+        }
+
+        &__title {
+            font-size: rem(48px);
+            letter-spacing: 1px;
+        }
+    }
+
+    @include when-wider-than(small_desktop) {
+        @include grid-desktop;
+        grid-template-areas:
+            "head head head head head head head head head head head head"
+            "body body body body body body body body body body body body"
+            "foot foot foot foot foot foot foot foot foot foot foot foot";
+
+        &__nav {
+            justify-content: flex-start;
+
+            &-link {
+                flex: 0 1 auto;
+                padding: 0 rem(20px);
+            }
+        }
+
+        &__new-post-button,
+        &__home-button {
+            max-width: rem(500px);
+            margin: 0 auto;
+            height: rem(30px);
+        }
+    }
+}

@@ -1,0 +1,49 @@
+@import 'variables';
+
+@function rem($size) {
+    $remSize: $size / $baseFontSize;
+    @return #{$remSize}rem;
+}
+
+@mixin grid-mobile() {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-column-gap: rem(16px);
+}
+
+@mixin grid-desktop() {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto 1fr;
+    grid-column-gap: rem(16px);
+}
+
+@mixin title-line() {
+    &::after {
+        content: ' ';
+        flex: 1 0 auto;
+        display: block;
+        margin: 0 0 0 rem(10px);
+        background: $lavender;
+        height: rem(1px);
+    }
+}
+
+$breakpoints: (
+        mobile: 320 * 1px,
+        tablet: 640 * 1px,
+        small_desktop: 960 * 1px,
+        large_desktop: 1280 * 1px
+);
+
+@function get-breakpoint($target) {
+    $breakpoint: map-get($breakpoints, $target);
+    @return $breakpoint;
+}
+
+@mixin when-wider-than($target) {
+    @media all and (min-width: get-breakpoint($target)) {
+        @content;
+    }
+}

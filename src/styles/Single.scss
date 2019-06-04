@@ -1,0 +1,21 @@
+@import 'component';
+
+.soliloquy-single {
+    grid-area: body;
+
+    @include when-wider-than(small_desktop) {
+        @include grid-desktop;
+        grid-template-areas:
+            "body body body body body body side side side side side side"
+            "body body body body body body form form form form form form"
+            "body body body body body body . . . . . . ";
+        grid-template-rows: auto auto 1fr;
+    }
+
+    @include when-wider-than(large_desktop) {
+        grid-template-areas:
+                "body body body body body body body side side side side side"
+                "body body body body body body body form form form form form"
+                "body body body body body body body . . . . . ";;
+    }
+}

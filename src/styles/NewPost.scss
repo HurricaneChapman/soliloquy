@@ -1,0 +1,37 @@
+@import 'component';
+@import 'forms';
+
+.soliloquy-post-form {
+    @include form;
+    @include text-input;
+    @include textarea;
+    @include select;
+    grid-area: body;
+
+    &__title {
+        @include title-line;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: $titleFont;
+        font-size: rem(30px);
+        color: $snuff;
+        margin: 0 0 rem(20px);
+
+        &::after {
+            margin-right: 0;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    button {
+        @include button;
+        flex: 0 1 auto;
+        width: calc(50% - #{rem(10px)});
+    }
+}

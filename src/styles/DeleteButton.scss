@@ -1,0 +1,36 @@
+@import "component";
+
+.soliloquy-delete-button {
+    background: none;
+    color: $lavender;
+    font-size: rem(12px);
+    font-weight: 600;
+    padding: 0 0 rem(2px);
+    border: none;
+    border-bottom: rem(1px) solid $lavender;
+    text-transform: uppercase;
+    text-shadow: 0 rem(1px) $black;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+        color: $snow;
+        border-color: $snow;
+    }
+
+    &--confirm {
+        outline: none;
+        color: $white;
+        border-color: $white;
+        transform: scale(1.5);
+    }
+
+    @include when-wider-than(small_desktop) {
+        &--confirm {
+            transform: scale(1.2);
+        }
+    }
+}

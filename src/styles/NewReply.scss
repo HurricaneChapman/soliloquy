@@ -1,0 +1,74 @@
+@import 'component';
+@import 'forms';
+
+.soliloquy-reply-form {
+    @include form;
+    @include text-input;
+
+    &__title {
+        @include title-line;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: $titleFont;
+        font-size: rem(22px);
+        color: $snuff;
+        margin: rem(10px) 0 rem(20px);
+
+        span {
+            display: block;
+            flex: 0 0 auto;
+            width: auto;
+        }
+
+        &::after {
+            margin: 0 0 0 rem(20px);
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: rem(30px);
+    }
+
+    button {
+        @include button;
+        flex: 0 1 auto;
+        width: calc(50% - #{rem(10px)});
+    }
+
+    @include when-wider-than(small_desktop) {
+        grid-area: form;
+        padding: rem(16px) rem(15px) rem(20px);
+
+        &__input-wrapper {
+            margin-bottom: rem(3px);
+        }
+
+        &__title {
+            font-size: rem(12px);
+            margin-bottom: rem(3px);
+        }
+
+        &__label {
+            transform: translateY(#{rem(18px)}) scale(1.2);
+            font-size: rem(10px);
+        }
+
+        input {
+            font-size: rem(12px);
+        }
+
+        &__buttons {
+            margin: rem(15px) 0 0;
+            justify-content: flex-end;
+
+            button {
+                width: auto;
+                margin-left: rem(20px);
+            }
+        }
+    }
+}

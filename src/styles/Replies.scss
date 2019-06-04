@@ -1,0 +1,202 @@
+@import 'component';
+
+.soliloquy-replies {
+    @include grid-mobile;
+    grid-template-areas:
+        "head head head head head head"
+        "replies replies replies replies replies replies";
+
+    &__header {
+        grid-area: head;
+    }
+
+    &__title {
+        @include title-line;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: rem(18px);
+        font-weight: 600;
+        color: $london;
+        letter-spacing: rem(.3px);
+        margin: 0 0 rem(10px);
+        padding-bottom: rem(20px);
+
+        span {
+            font-weight: 100;
+            font-size: rem(16px);
+            margin-left: rem(5px);
+        }
+
+        &::after {
+            margin-right: 0;
+        }
+    }
+
+    &__content {
+        position: relative;
+        grid-area: replies;
+        padding-bottom: rem(20px);
+    }
+
+    &__reply {
+        position: relative;
+        color: $london;
+        font-size: rem(13px);
+        line-height: 1.4;
+        letter-spacing: rem(.4px);
+        padding: rem(10px) 0;
+
+        &-author {
+            display: inline;
+            margin: 0;
+            letter-spacing: rem(.3px);
+            text-shadow: rem(1px) rem(1px) $black;
+            font-size: rem(12px);
+            color: $lavender;
+        }
+
+        &-meta {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        &-date {
+            display: none;
+        }
+
+        &-ui {
+            position: absolute;
+            top: rem(11px);
+            right: 0;
+        }
+
+        &-text {
+            margin: rem(3px);
+        }
+    }
+
+    .soliloquy-delete-button {
+        // hidden on mobile
+        display: none;
+    }
+
+    @include when-wider-than(tablet) {
+        font-size: rem(24px);
+
+        &__title {
+            font-size: rem(24px);
+
+            span {
+                font-size: rem(18px);
+            }
+        }
+
+        &__reply {
+            @include grid-mobile;
+            font-size: rem(18px);
+            line-height: 1.5;
+            letter-spacing: rem(.4px);
+            padding: rem(20px) 0;
+
+            &-meta {
+                grid-column: 1 / span 6;
+            }
+
+            &-author {
+                letter-spacing: rem(.5px);
+                text-shadow: rem(1px) rem(1px) $black;
+                font-size: rem(15px);
+                color: $lavender;
+            }
+
+            &-date {
+                display: block;
+                color: $lavender;
+                font-size: rem(12px);
+                margin: 0 0 0 rem(20px);
+            }
+
+            &-ui {
+                grid-column: 1 / span 6;
+                position: absolute;
+                top: rem(11px);
+                right: 0;
+            }
+
+            &-text {
+                grid-column: 1 / span 5;
+                margin: rem(3px);
+            }
+
+            &-ui {
+                position: static;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: rem(10px) 0;
+            }
+
+            .soliloquy-delete-button {
+                display: inline-block;
+            }
+        }
+    }
+
+    @include when-wider-than(small_desktop) {
+        grid-area: side;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas:
+            'head head head head head head'
+            'replies replies replies replies replies'
+            'form form form form form';
+
+        &__title {
+            justify-content: flex-start;
+            padding: 0;
+            margin: 0 0 rem(20px);
+            line-height: 1;
+
+            &::after {
+                content: none;
+            }
+        }
+
+        &__reply {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-areas:
+                'replyhead replyhead replyhead replyhead replyhead ui'
+                'reply reply reply reply reply ui';
+            padding: rem(14px) 0;
+            border-top: rem(1px) dotted $eggplant;
+
+            &-meta {
+                grid-area: replyhead;
+            }
+
+            &-author {
+                font-size: rem(12px);
+            }
+
+            &-text {
+                grid-area: reply;
+                font-size: rem(12px);
+            }
+
+            &-ui {
+                grid-area: ui;
+                flex-flow: column nowrap;
+                justify-content: space-between;
+                padding: 0;
+            }
+        }
+
+        .soliloquy-delete-button {
+            margin-top: rem(20px);
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@import 'component';
+@import 'forms';
+
+.soliloquy-like-button {
+    @include button;
+    font-size: rem(14px);
+    height: rem(26px);
+    padding: 0 rem(13px);
+    width: auto;
+
+    &__heart {
+        transform: scale(1.5);
+        margin-right: rem(3px);
+    }
+
+    .soliloquy-replies & {
+        font-size: rem(9px);
+        border-radius: 20px;
+        height: rem(14px);
+        padding: 0 rem(5px);
+        letter-spacing: rem(.5px);
+
+        @include when-wider-than(tablet) {
+            font-size: rem(14px);
+            height: rem(22px);
+        }
+    }
+}

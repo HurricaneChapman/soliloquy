@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../styles/NewPost.scss';
+
 // Post form
 // controlled by redux store
 
@@ -8,10 +10,33 @@ class NewPost extends Component {
         super(props);
 
         this.runAfterUpdate = () => {};
+        this.state = {
+            errors: {
+                author: false,
+                title: false,
+                content: false
+            }
+        }
     }
 
     handleSubmit(e) {
         e.preventDefault();
+        // prevent bad submissions
+        const errorState = {
+            author: this.props.authorValue === '',
+            title: this.props.titleValue === '',
+            content: this.props.contentValue === ''
+        };
+
+        switch (true) {
+            case errorState.author:
+            case errorState.title:
+            case errorState.content:
+                this.setState({errors: errorState});
+                return;
+            default:
+                // continue
+        }
 
         // Trigger redux submit action
         this.props.formSubmit('POST', this.props.contentValue, this.props.authorValue, this.props.titleValue);
@@ -57,51 +82,51 @@ class NewPost extends Component {
 
     render() {
         return (
-            <section className="soliloquy-new-post">
-                <h1>new post</h1>
+            <section className="soliloquy-post-form">
+                <h1 className="soliloquy-post-form__title">New post</h1>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <div>
-                        <label htmlFor="FieldAuthor">Username</label>
+                    <div className={`soliloquy-post-form__input-wrapper ${this.props.authorValue === '' ? '' : 'soliloquy-post-form__input-wrapper--is-dirty'}`}>
+                        <label className={`soliloquy-post-form__label soliloquy-post-form__label--text-input ${this.state.errors.author ? 'soliloquy-post-form__label--error' : ''}`} htmlFor="FieldAuthor">Username</label>
                         <input
                             id='FieldAuthor'
                             type="text"
                             name={'author'}
                             value={this.props.authorValue}
                             onChange={this.handleChange.bind(this)}
-                            placeholder='Enter a user name'
                         />
                     </div>
-                    <div>
-                        <label htmlFor="FieldTitle">Title</label>
+                    <div className={`soliloquy-post-form__input-wrapper ${this.props.titleValue === '' ? '' : 'soliloquy-post-form__input-wrapper--is-dirty'}`}>
+                        <label className={`soliloquy-post-form__label soliloquy-post-form__label--text-input ${this.state.errors.title ? 'soliloquy-post-form__label--error' : ''}`} htmlFor="FieldTitle">Title</label>
                         <input
                             id='FieldTitle'
                             type="text"
                             name={'title'}
                             value={this.props.titleValue}
                             onChange={this.handleChange.bind(this)}
-                            placeholder='Enter a title for your post'
                         />
                     </div>
-                    <div>
-                        <label htmlFor="FieldContent">Post</label>
+                    <div className={`soliloquy-post-form__input-wrapper ${this.props.contentValue === '' ? '' : 'soliloquy-post-form__input-wrapper--is-dirty'}`}>
+                        <label className={`soliloquy-post-form__label soliloquy-post-form__label--textarea ${this.state.errors.content ? 'soliloquy-post-form__label--error' : ''}`} htmlFor="FieldContent">Post</label>
                         <textarea
                             id='FieldContent'
                             name={'content'}
                             value={this.props.contentValue}
                             onChange={this.handleChange.bind(this)}
-                            placeholder='Enter some text'
                         />
                     </div>
-                    <div>
-                        <label htmlFor="AfterSubmit">After posting</label>
+                    <div className={`soliloquy-post-form__input-wrapper ${this.props.contentValue === '' ? '' : 'soliloquy-post-form__input-wrapper--is-dirty'}`}>
+                        <label className={`soliloquy-post-form__label soliloquy-post-form__label--select`} htmlFor="AfterSubmit">After posting</label>
+                        <svg className="soliloquy-svg-select-icon" width="16" height="16" viewBox="0 0 16 16"> <path fill="#000000" d="M16 8c0-4.418-3.582-8-8-8s-8 3.582-8 8 3.582 8 8 8 8-3.582 8-8zM1.5 8c0-3.59 2.91-6.5 6.5-6.5s6.5 2.91 6.5 6.5-2.91 6.5-6.5 6.5-6.5-2.91-6.5-6.5z"/> <path fill="#000000" d="M4.957 5.543l-1.414 1.414 4.457 4.457 4.457-4.457-1.414-1.414-3.043 3.043z"/> </svg>
                         <select name="afterSubmit" id="AfterSubmit" value={this.props.afterSubmit} onChange={this.handleChange.bind(this)}>
                             <option value="stay">Stay here and keep posting</option>
                             <option value="home">Return to Homepage</option>
                             <option value="view">View the post</option>
                         </select>
                     </div>
-                    <button type='reset' onClick={this.handleReset.bind(this)} aria-label='Reset'>Reset</button>
-                    <button type='submit' aria-label='Submit'>Submit</button>
+                    <div className='soliloquy-post-form__buttons'>
+                        <button type='reset' onClick={this.handleReset.bind(this)} aria-label='Reset'>Reset</button>
+                        <button type='submit' aria-label='Submit'>Submit post</button>
+                    </div>
                 </form>
             </section>
         );

@@ -1,0 +1,257 @@
+@import 'component';
+
+.soliloquy-post {
+    @include grid-mobile;
+    position: relative;
+    grid-template-areas:
+            "head head head head head head"
+            "body body body body body body";
+
+    &__header {
+        grid-area: head;
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: rem(10px) 0;
+    }
+
+    &__date {
+        color: $london;
+        font-size: rem(12px);
+        margin: 0;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: rem(36px);
+        text-shadow: rem(1px) rem(1px) $black;
+    }
+
+    &__author {
+        font-size: rem(12px);
+        color: $lavender;
+        margin: rem(10px) 0;
+        letter-spacing: rem(.3px);
+        text-shadow: rem(1px) rem(1px) $black;
+    }
+
+    &__body {
+        position: relative;
+        grid-area: body;
+        line-height: 1.4;
+        color: $snuff;
+        padding-bottom: rem(40px);
+        margin-bottom: rem(20px);
+    }
+
+    @include when-wider-than(tablet) {
+        &__header {
+            @include grid-mobile;
+        }
+
+        &__meta {
+            grid-column: 1 / span 6;
+            justify-content: flex-start;
+
+            .soliloquy-like-button {
+                margin-left: rem(20px);
+            }
+        }
+
+        &__date {
+            font-size: rem(18px);
+        }
+
+        &__title {
+            grid-column: 1 / span 5;
+            font-size: rem(42px);
+        }
+
+        &__author {
+            grid-column: 1 / span 6;
+            font-size: rem(24px);
+            margin: rem(16px) 0;
+            letter-spacing: rem(.3px);
+            text-shadow: rem(1px) rem(1px) $black;
+        }
+
+        &__body {
+            grid-column: 1 / span 5;
+            font-size: rem(22px);
+            line-height: 1.6;
+        }
+
+        .soliloquy-delete-button {
+            display: block;
+            position: absolute;
+            top: rem(24px);
+            right: 0;
+        }
+
+    }
+
+    @include when-wider-than(small_desktop) {
+        grid-area: body;
+        display: block;
+        padding: rem(20px) rem(40px) rem(20px) rem(20px);
+        border-right: rem(1px) solid $eggplant;
+
+        .soliloquy-delete-button {
+            top: rem(30px);
+            right: rem(40px);
+        }
+
+        &__author {
+            margin: 0 0 rem(10px);
+            font-size: rem(16px);
+        }
+
+        &__title {
+            grid-column: 1 / span 6;
+        }
+
+        &__date {
+            font-size: rem(16px);
+        }
+
+        &__meta {
+            justify-content: space-between;
+        }
+    }
+
+    // Styles for display as part of post list
+    .soliloquy-post-list & {
+        padding: rem(10px) 0 0;
+
+        &__title {
+            color: $ivory;
+            margin: 0;
+            font-size: rem(18px);
+            text-shadow: rem(1px) rem(1px) $black;
+        }
+
+        &__meta {
+            justify-content: flex-start;
+            flex-flow: row wrap;
+        }
+
+        &__date {
+            width: 100%;
+            margin-bottom: rem(10px);
+        }
+
+        &__replies {
+            font-size: rem(12px);
+            margin-left: rem(20px);
+            color: $london;
+        }
+
+        @include when-wider-than(tablet) {
+            margin-bottom: rem(30px);
+
+            &__header {
+                @include grid-mobile;
+
+                > a {
+                    grid-column: 1 / span 5;
+                }
+            }
+
+            &__date {
+                font-size: rem(16px);
+            }
+
+            &__title {
+                font-size: rem(28px);
+            }
+
+            &__author {
+                grid-column: 1 / span 6;
+                font-size: rem(18px);
+                margin: rem(8px) 0;
+                letter-spacing: rem(.3px);
+                text-shadow: rem(1px) rem(1px) $black;
+            }
+
+            &__replies {
+                font-size: rem(18px);
+                margin: 0 0 0 rem(20px);
+            }
+
+            &__body {
+                grid-column: 1 / span 5;
+                font-size: rem(22px);
+                line-height: 1.6;
+            }
+
+            .soliloquy-like-button {
+                height: rem(30px);
+                margin: 0;
+            }
+
+            .soliloquy-delete-button {
+                display: block;
+                position: absolute;
+                top: rem(24px);
+                right: 0;
+            }
+        }
+
+        @include when-wider-than(small_desktop) {
+            display: block;
+            border-right: none;
+
+            &__header {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+
+                > a {
+                    display: inline-block;
+                    grid-column: 1 / span 10;
+                }
+            }
+
+            &__date {
+                font-size: rem(16px);
+            }
+
+            &__title {
+                font-size: rem(28px);
+            }
+
+            &__author {
+                grid-column: 1 / span 6;
+                font-size: rem(18px);
+                margin: rem(8px) 0;
+                letter-spacing: rem(.3px);
+                text-shadow: rem(1px) rem(1px) $black;
+            }
+
+            &__replies {
+                font-size: rem(18px);
+                margin: 0 0 0 rem(20px);
+            }
+
+            &__body {
+                grid-column: 1 / span 5;
+                font-size: rem(22px);
+                line-height: 1.6;
+            }
+
+            .soliloquy-like-button {
+                height: rem(30px);
+                margin: 0;
+            }
+
+            .soliloquy-delete-button {
+                display: block;
+                position: absolute;
+                top: rem(24px);
+                right: 0;
+            }
+        }
+    }
+}

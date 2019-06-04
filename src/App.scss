@@ -1,31 +1,41 @@
-@import './styles/_component.scss';
+@import '~normalize.css';
+@import './styles/component';
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One|Raleway&display=swap');
+
 
 html {
-    background-color: #282c34;
-    color: white;
+    color: $ivory;
+    font-family: 'Raleway', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+
+    * {
+        box-sizing: inherit;
+    }
+
+    &::after {
+        content: ' ';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $tamarind;
+        background: -moz-linear-gradient(top, $tamarind 0%, $black 100%);
+        background: -webkit-linear-gradient(top, $tamarind 0%,$black 100%);
+        background: linear-gradient(to bottom, $cocoaBean 0%, $black 100%);
+        z-index: 0;
+    }
 }
 
-.soliloquy {
-    text-align: center;
+body {
+    position: relative;
+    z-index: 1;
 }
 
-.soliloquy-logo {
-    animation: App-logo-spin infinite 20s linear;
-    pointer-events: none;
-}
-
-.soliloquy-header {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-
-}
-
-.App-link {
-    color: #61dafb;
+a {
+    color: $ivory;
+    text-decoration: none;
 }
 
 @keyframes App-logo-spin {
