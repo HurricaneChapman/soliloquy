@@ -1,4 +1,4 @@
-#Soliloquy
+# Soliloquy
 Soliloquy is a message board for one. Written in React, written with love, and also sleep deprivation and the insistent prodding of a lonely cat.
 Pull down the repo. Run yarn install. Then run yarn start.
 
